@@ -27,6 +27,10 @@ namespace deno {
 
 std::vector<InternalFieldData*> deserialized_data;
 
+DenoIsolate* unwrap(Deno* d_) {
+  return reinterpret_cast<deno::DenoIsolate*>(d_);
+}
+
 void DeserializeInternalFields(v8::Local<v8::Object> holder, int index,
                                v8::StartupData payload, void* data) {
   DCHECK_NULL(data);

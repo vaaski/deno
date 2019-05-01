@@ -111,6 +111,8 @@ class DenoIsolate {
   bool has_snapshotted_;
 };
 
+DenoIsolate* unwrap(Deno* d_);
+
 class UserDataScope {
   DenoIsolate* deno_;
   void* prev_data_;
@@ -138,6 +140,8 @@ static inline v8::Local<v8::String> v8_str(const char* x) {
                                  v8::NewStringType::kNormal)
       .ToLocalChecked();
 }
+
+const char* ToCString(const v8::String::Utf8Value& value);
 
 void Print(const v8::FunctionCallbackInfo<v8::Value>& args);
 void Recv(const v8::FunctionCallbackInfo<v8::Value>& args);
